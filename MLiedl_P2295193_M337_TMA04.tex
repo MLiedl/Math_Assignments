@@ -1,0 +1,1883 @@
+%-------------------------------------------------------------
+%  Open University - MST337  TMA02
+%-------------------------------------------------------------
+\documentclass[english,a4paper,11pt]{scrartcl}
+%\documentclass[english,a4paper,11pt,ceqn]{scrartcl}
+%\input{URW_Nimbus_Roman}
+\input{New_Tx}
+
+
+\input{Math_Problems_Layout_Settings}
+\input{Math_Packages}
+\usepackage{booktabs}
+
+%\usepackage{xcolor}
+
+\renewcommand{\theequation}{\arabic{equation}}
+    
+\begin{document}
+	%	\sffamily
+
+	
+\begin{center}	
+\huge{Michael Liedl - P2295193}\\
+\bigskip \bigskip \bigskip
+\huge{MST337}\\
+\bigskip \bigskip
+\huge{Complex Analysis}\\
+\bigskip \bigskip \bigskip
+\huge{TMA04}\\ 
+\bigskip
+\end{center}
+
+\comment{
+}
+
+\comment{===========================================================}
+\noindent\rule[0.5ex]{\linewidth}{1pt} 
+\newpage
+\begin{Question}[1a - Fluid Flows, Complex-Valued Functions ]{}
+
+ Let q be the velocity function
+ 
+\[ q(z) \EQ \frac{1}{(\conj{z} + 1)^2} \]
+
+\bigskip
+\begin{labeling}{(iii) }
+  \item [(i)]  Explain why $q$ is the velocity function for an ideal flow on $\C - \{-1\}$. 
+  
+  \item [(ii)]  Write down a complex potential function for $q$, and obtain the corresponding stream function. 
+  
+  \item [(iii)]  Determine equations involving a constant for the streamlines of $q$. Hence find equations for the streamlines through the points \, $0, \, \,-1 + i$\, and \,$1 - 2i$,\, and sketch them on a single diagram, indicating the direction of flow in each case. 
+
+  \item [(iv)] Find the flux of $q$ across the line segment $\Gamma$ from $-1 + i$ to $1 + i$. 
+  
+      
+\end{labeling}
+
+\bigskip
+\end{Question}
+
+\setcounter{equation}{0}
+
+
+\bigskip
+\begin{labeling}{(iii) }
+  \item [(i)]  The textbook defines \textit{ideal flow} as (TB Ref: Book~D, Unit~1 pg~14)(HB Ref: pg~81, Unit~D1, Section~1, point~12+13) \\
+  
+  \begin{figure}[H]
+  	\centering
+  	\includegraphics[width=0.9\linewidth]{"M337-TMA04-Q1a1-1"}
+  \end{figure}
+ 
+\bigskip  
+To see if $q$ is the velocity function for an ideal flow on $\C - \{-1\}$,  we can apply one of three different theorems: \\
+  
+  \begin{enumerate}
+  \item \textbf{Theorem 1.2} \quad (TB Ref: Book~D, Unit~1 pg~14)(HB Ref: pg~81, Unit~D1, Section~1, point~11) \\
+  
+  \begin{figure}[H]
+  	\centering
+  	\includegraphics[width=0.9\linewidth]{"M337-TMA04-Q1a1-2"}
+  \end{figure}
+  
+which for our velocity function $q$ gives
+
+\begin{IEEEeqnarray*}{rCl"s}
+  \mathcal{C}_\Gamma \,+\, \mathcal{F}_\Gamma & \EQ & \int_\Gamma \, \conj{q}(z) \, \dd{z} \EQ \int_\Gamma \, \conj{q(z)} \, \dd{z}  \\
+\\ \\   
+   & \EQ & \int_\Gamma \, \frac{1}{(z + 1)^2} \, \dd{z}  &  $z \in \C - \{-1\}$ \\
+\\ 
+\intertext{Applying Cauchy' First Derivative Formula (HB Ref: pg-45, Unit~B2, Section~3, point~1) with $f(z) = 1$ and $f'(\alpha) = 0$}   
+\\
+ \mathcal{C}_\Gamma \,+\, \mathcal{F}_\Gamma   & \EQ & 2 \pi i \cdot 0 \EQ 0
+  \end{IEEEeqnarray*}  
+
+\begin{Answer}
+Hence, both $\,\mathcal{C}_\Gamma\,$ and $\,\mathcal{F}\,$ are equal to zero and by Theorem 1.2, $q$ is a velocity function for an ideal flow on $\C - \{-1\}$. \\
+\end{Answer}
+
+\newpage
+  \item \textbf{Theorem 1.3} \quad (TB Ref: Book~D, Unit~1 pg~15)(HB Ref: pg~81, Unit~D1, Section~1, point~15) \\
+ 
+  \begin{figure}[H]
+  	\centering
+  	\includegraphics[width=0.9\linewidth]{"M337-TMA04-Q1a1-3"}
+  \end{figure}
+
+\bigskip
+where the conjugate velocity function $\conj{q}(z)$ can be shown to be analytic on $\C - \{-1\}$ by calculating the derivative at a generic point in the domain
+
+\begin{IEEEeqnarray*}{rCl}
+  \lim_{z\to\alpha} \, \frac{\conj{q}(z) \,-\, \conj{q}(\alpha)}{z\,-\, \alpha} & \EQ &   \lim_{z\to\alpha} \, \frac1{z\,-\, \alpha} \cdot \Bigg[\, \frac{1}{(z + 1)^2} \,-\, \frac{1}{(\alpha + 1)^2} \,\Bigg]  \\
+\\  \\
+   & \EQ &  \lim_{z\to\alpha} \, \frac1{z\,-\, \alpha} \cdot \Bigg[\, \frac{(\alpha + 1)^2 \,-\, (z + 1)^2}{(z + 1)^2 \, (\alpha + 1)^2}\,\Bigg]  \\ 
+\\ \\  
+   & \EQ &  \lim_{z\to\alpha} \, \frac1{z\,-\, \alpha} \cdot \Bigg[\, \frac{\big(\, (\alpha + 1) \,-\, (z + 1) \,\big)\,\big(\, (\alpha + 1) \,+\, (z + 1) \,\big)}
+   {(z + 1)^2 \, (\alpha + 1)^2}\,\Bigg]  \\ 
+\\ \\  
+   & \EQ &  \lim_{z\to\alpha} \, \frac1{z\,-\, \alpha} \cdot \Bigg[\, \frac{ (\, \alpha - z \,)\,(\, \alpha + z + 2 \,)}
+   {(z + 1)^2 \, (\alpha + 1)^2}\,\Bigg]  \\ 
+\\ \\  
+   & \EQ &  \lim_{z\to\alpha} \,   \Bigg[\, - \frac{ (\, \alpha + z + 2 \,)}  {(z + 1)^2 \, (\alpha + 1)^2}\,\Bigg]  \\ 
+\\ \\  
+   & \EQ &   - \frac{ 2(\, \alpha + 1 \,)}  {(\alpha + 1)^4}  \EQ    - \frac{2}  {(\alpha + 1)^3} \qquad  \qquad  \alpha \in \C - \{-1\}   
+\end{IEEEeqnarray*}  
+\begin{Answer}
+Hence $\conj{q}$ is analytic on $\Reg{R}$, so by Theorem 1.3, $q$ is a velocity function for an ideal flow on $\C - \{-1\}$. 
+\end{Answer}
+
+\newpage
+  \item \textbf{Theorem 1.4} \quad (TB Ref: Book~D, Unit~1 pg~18)(HB Ref: pg~82, Unit~D1, Section~1, point~17 ) \\
+ 
+  \begin{figure}[H]
+  	\centering
+  	\includegraphics[width=0.9\linewidth]{"M337-TMA04-Q1a1-4"}
+  \end{figure}
+
+\bigskip
+The real and imaginary parts of 
+\[ q(z) \EQ \frac1{(\conj{z} + 1)^2} 
+ \EQ \frac{(z+1)^2}{\abs{z+1}^4}
+ \EQ \frac{\left(\, (x+1) + iy \,\right)^2}{\left(\, (x+1)^2 + y^2 \,\right)^2} \]
+\begin{IEEEeqnarray*}{rCl}
+\intertext{are, having applied the identity $z\conj{z} = \abs{z}^2$, respectively}
+\\
+ q_1(x,y) & \EQ & \frac{(x+1)^2 \,-\, y^2 }{\left(\, (x+1)^2 \,+\, y^2 \,\right)^2}  \\
+\\ \\
+ q_2(x,y) & \EQ & \frac{2xy \,+\, 2y }{\left(\, (x+1)^2 \,+\, y^2 \,\right)^2}  \\
+ \\
+\intertext{If we let $X = x+1$, in order to make it easier to follow the calcualtions, then} 
+\\
+ q_1(x,y) & \EQ & \frac{X^2 \,-\, y^2 }{\left(\, X^2 \,+\, y^2 \,\right)^2}  \\
+\\ \\
+ q_2(x,y) & \EQ & \frac{2Xy }{\left(\, X^2 \,+\, y^2 \,\right)^2}  \\
+ \\
+\intertext{and the partial derivatives on $q_1$ and $q_2$ are:}
+\\
+\pdv{q_1}{x} & \EQ & \frac{\Bigg(\, 2X \cdot \left(\, X^2 \,+\, y^2 \,\right)^2 \,\Bigg) \,-\, \Bigg(\, \left(\, X^2 \,-\, y^2 \,\right) \cdot 4X\left(\, X^2 \,+\, y^2 \,\right) \,\Bigg)}{\left(\, X^2 \,+\, y^2 \,\right)^4}
+\\ \\
+\\
+& \EQ & 2X \, \Bigg(\, \frac{  \left(\, X^2 \,+\, y^2 \,\right)  \,-\,  2\left(\, X^2 \,-\, y^2 \,\right)  }{\left(\, X^2 \,+\, y^2 \,\right)^3} \,\Bigg)
+\\ \\
+\\
+& \EQ &  \frac{ 2X \left(\, 3y^2  \,-\,  X^2  \,\right)  }{\left(\, X^2 \,+\, y^2 \,\right)^3} 
+\\ \\
+\\
+\pdv{q_2}{y} & \EQ & \frac{\Bigg(\, 2X \cdot \left(\, X^2 \,+\, y^2 \,\right)^2 \,\Bigg) \,-\, \Bigg(\,  2Xy  \cdot 4y \left(\, X^2 \,+\, y^2 \,\right) \,\Bigg)}{\left(\, X^2 \,+\, y^2 \,\right)^4}
+\\ \\
+\\
+ & \EQ & \frac{ 2X \cdot \left(\, X^2 \,+\, y^2 \,\right)  \,-\,  \left(\, 8Xy^2 \,\right)}{\left(\, X^2 \,+\, y^2 \,\right)^3}
+ \EQ \frac{ 2X^3  \,-\,  6Xy^2 }{\left(\, X^2 \,+\, y^2 \,\right)^3}
+\\ \\
+\\
+ & \EQ &  - \, \frac{ 2X \left(\, 3y^2  \,-\,  X^2  \,\right) }{\left(\, X^2 \,+\, y^2 \,\right)^3}
+\\
+ \end{IEEEeqnarray*} 
+so we have
+ 
+\[ \pdv{q_1}{x} \,+\, \pdv{q_2}{y} \EQ 0 \]
+
+\begin{IEEEeqnarray*}{rCl}
+\intertext{And, }
+\pdv{q_1}{y} & \EQ & \frac{\Bigg(\,- 2y \cdot \left(\, X^2 \,+\, y^2 \,\right)^2 \,\Bigg) \,-\, \Bigg(\, \left(\, X^2 \,-\, y^2 \,\right) \cdot 4y\left(\, X^2 \,+\, y^2 \,\right) \,\Bigg)}{\left(\, X^2 \,+\, y^2 \,\right)^4}
+\\ \\
+\\
+& \EQ & 2y \, \Bigg(\, \frac{ - \left(\, X^2 \,+\, y^2 \,\right)  \,-\,  2\left(\, X^2 \,-\, y^2 \,\right)  }{\left(\, X^2 \,+\, y^2 \,\right)^3} \,\Bigg)
+\\ \\
+\\
+& \EQ &  \frac{ 2y \left(\, y^2  \,-\,  3X^2  \,\right)  }{\left(\, X^2 \,+\, y^2 \,\right)^3} 
+\\ \\
+\\
+\pdv{q_2}{x} & \EQ & \frac{\Bigg(\, 2y \cdot \left(\, X^2 \,+\, y^2 \,\right)^2 \,\Bigg) \,-\, \Bigg(\,  2Xy  \cdot 4X \left(\, X^2 \,+\, y^2 \,\right) \,\Bigg)}{\left(\, X^2 \,+\, y^2 \,\right)^4}
+\\ \\
+\\
+ & \EQ & \frac{ 2y \cdot \left(\, X^2 \,+\, y^2 \,\right)  \,-\,  \left(\, 8X^2y \,\right)}{\left(\, X^2 \,+\, y^2 \,\right)^3}
+ \EQ \frac{ 2y^3  \,-\,  6X^2y }{\left(\, X^2 \,+\, y^2 \,\right)^3}
+\\ \\
+\\
+ & \EQ &  \frac{ 2y \left(\, y^2  \,-\,  3X^2  \,\right) }{\left(\, X^2 \,+\, y^2 \,\right)^3}
+\\ \\
+\\
+ \end{IEEEeqnarray*}
+so we have
+ 
+\[ \pdv{q_2}{x} \,-\, \pdv{q_1}{y} \EQ 0 \] 
+
+\begin{Answer}
+Hence, by Theorem 1.4, $q$ is a velocity function for an ideal flow on $\C - \{-1\}$.  
+\end{Answer}
+  
+  \end{enumerate}
+
+\newpage
+\begin{Reflection}
+\bigskip
+Clearly the above exposition is an extreme overkill for a problem worth only two points! However, it is the question that offers the most opportunity to  resolve issues that I encountered while studying the chapter. \\
+
+I am currently studying M326 Fluid Mechanics from a differential equation point of view. Initially I thought that this chapter would be easy, but then I found alternative definitions, using complex analysis, for concepts like velocity function, ideal flow, streamlines, etc totally different from the ones I had already learnt. Not being able to reconcile the different definitions, I was utterly confused and had to pretend that I was studying two totally unrelated subjects, even though they carried the same title: Fluid Mechanics. \\
+
+Only after having resolved some problems with each of the above Theorems, was I able to appreciate the different perspectives on the same subject matter. The detailed solutions provided above, clearly shows the difference of economy and mental framework that can be used for one and the same problem. \\
+
+\end{Reflection}
+
+
+
+\newpage  
+  \item [(ii)] The \textbf{complex potential function} for the velocity function $q$ is defined as (HB Ref: pg~82, Unit~D1, Section~2, point~1) \\
+  
+\begin{figure}[H]
+ 	\centering
+ 	\includegraphics[width=0.9\linewidth]{"M337-TMA04-Q1a2-1"}
+ \end{figure} 
+%  
+\begin{IEEEeqnarray*}{rCl}
+\intertext{For our velocity function}
+q(z) & \EQ & \frac{1}{(\conj{z} + 1)^2} \\ 
+\intertext{the conjugate function is}
+\conj{q}(z) & \EQ & \frac{1}{(z + 1)^2} \\
+\end{IEEEeqnarray*}
+
+so a \textbf{complex potential function} for the flow $q$ is \\
+
+\begin{Answer}
+\[ \qquad \qquad \Omega(z)  \EQ  - \, \frac{1}{(z + 1)} \qquad \qquad~ \]
+\end{Answer}
+
+\newpage
+ The \textbf{stream function} for the velocity function $q$ is defined by Theorem 2.1 as (TB Ref: Book~D, Unit~1 pg~21+22)(HB Ref: pg~82, Unit~D1, Section~2, point~3-6) \\
+  
+\begin{figure}[H]
+ 	\centering
+ 	\includegraphics[width=0.9\linewidth]{"M337-TMA04-Q1a2-2"}
+ \end{figure} 
+%  
+\begin{IEEEeqnarray*}{rCl}
+\intertext{From our \textbf{complex potential function}, $\Omega(z)$ with $z = x + iy$, we obtain}
+\Omega(z) & \EQ & - \, \frac{1}{(z + 1)} \EQ - \,\frac{1}{(x+1) + iy} \\ 
+\\
+ & \EQ & \frac{(x+1) -iy}{(x+1)^2 - (iy)^2} \EQ  \frac{(x+1) -iy}{(x+1)^2 + y^2} \\
+\\
+\intertext{so the corresponding \textbf{stream function} $\Psi$ is given by,}
+\end{IEEEeqnarray*}  
+
+\begin{Answer}
+\[ \qquad \Psi(z) \EQ \Im \Omega(z)  \EQ  - \, \frac{y}{(x+1)^2 + y^2} \qquad ~\]
+\end{Answer}   
+
+
+
+
+
+\newpage  
+  \item [(iii)] The \textbf{stream function}
+  
+\[  \Psi(z) \EQ  - \, \frac{y}{(x+1)^2 + y^2} \qquad \text{~~ for ~~ $z \in \C - \{-1\}$} \]  
+  
+shows that, by Theorem 2.1 (as mentioned above), the streamlines have equations of the form \\
+
+\begin{Answer}
+\[ \qquad (x+1)^2 \,+\, y^2 \EQ ky \qquad \text{or} \qquad y \EQ 0 \qquad ~ \] 
+\end{Answer}
+
+where $k$ is a constant. The equation $y = 0$ determines two streamlines: the positive real axis and the negative real axis. The equation $(x+1)^2 + y^2 = ky$ can be written in the form
+
+\[ \bigg(x + 1\bigg)^2 \,+\, \bigg(y - \frac1{2}k\bigg)^2 \EQ \frac1{4} k^2 \]
+
+\bigskip
+
+\begin{center}
+\begin{xtabular}{lp{0.5\textwidth}}
+
+	%\parbox[pos][height][contentpos]{width}{text}
+	\parbox[][8.5cm][t]{0.4\linewidth}
+	{which is equivalent to 
+	
+	\[ (x + 1)^2 \,+\, (y - K)^2 \EQ K^2 \]
+	
+	where $K = k/2$ and $K$ is a constant. \\
+
+	
+	The last equation represents a circle with centre at
+	 $\,(-1 \,+\, Ki) \,$ and radius $\abs{K}$. This family of 
+	 streamlines is shown in the figure to the right. \\ 
+	 
+	 The points \, $0, \, \,-1 + i$\, and \,$1 - 2i$,\, are depicted in red and the corresponding streamlines passing through them are in blue, with the equation written alongside.
+	}
+	
+&
+	%\begin{minipage}[pos][height][contentpos]{width} text \end{minipage} 
+	\begin{minipage}[htbp][8.5cm][c]{1\linewidth} 
+	{\begin{figure}[H]
+	 \centering
+	 \includegraphics[width=1.1\linewidth]{"M337-TMA04-Q1a3-1"}
+     \end{figure}
+	} 
+	\end{minipage} \\
+%
+%
+\end{xtabular}
+\end{center}
+
+\newpage
+Hence the equations for the highlighted streamlines in blue are \\
+
+\bigskip
+\bigskip
+\begin{Answer}
+\begin{IEEEeqnarray*}{srl}
+for the point  & \quad 0 \quad: \quad & 
+    y \EQ 0  \\
+\\
+\\
+for the point  & \quad -1 \,+\, i \quad: \quad & 
+  \bigg(x + 1\bigg)^2 \,+\, \bigg(y - \frac1{2} i\bigg)^2 \EQ \frac1{4} \\
+\\
+\\
+for the point  & \quad 1 \,-\, 2i \quad: \quad & 
+  \bigg(x + 1\bigg)^2 \,+\, \bigg(y + 2 i\bigg)^2 \EQ 4 \\
+\end{IEEEeqnarray*}
+\end{Answer}
+\clearpage
+
+
+\newpage
+  \item [(iv)] To find the flux of $q$ across the line segment $\Gamma$ from $-1 + i$ to $1 + i$, we shall use the complex potential function, $\Omega$, that we obtained previously. (TB Ref: Book~D, Unit~1 pg~20)(HB Ref: pg~82, Unit~D1, Section~2, point~2) \\
+  
+\bigskip  
+\begin{figure}[H]
+   	\centering
+   	\includegraphics[width=0.9\linewidth]{"M337-TMA04-Q1a4-1"}
+   \end{figure}   
+
+\bigskip
+So, the flux of $q$ across the line segment $\Gamma$ from $\,\alpha = -1 + i\,$ to $\,\beta = 1 + i\,$ is defined as:
+
+\begin{IEEEeqnarray*}{rCl}
+ \mathcal{F}_\Gamma & \EQ & \Im \Omega(\beta) \,-\, \Im \Omega(\alpha)  \\
+\\
+  & \EQ & \Im \Bigg(\, - \, \frac{1}{(\beta + 1)} \,\Bigg) \,-\, \Im \Bigg(\, - \, \frac{1}{(\alpha + 1)} \,\Bigg)   \\
+\\ \\
+  & \EQ & \Im \Bigg(\, - \, \frac{1}{(2 + i)} \,\Bigg) \,-\, \Im \Bigg(\, - \, \frac{1}{(i)} \,\Bigg)   \\
+\\ \\
+  & \EQ & \Im \Bigg(\, - \, \frac{2 - i}{(4 + 1)} \,\Bigg) \,-\, \Im (i)   \EQ   \frac1{5} \,-\, 1  \EQ - \frac{4}{5} \\
+\end{IEEEeqnarray*}  
+
+Hence, the flux of $q$ across the line segment $\Gamma$ from $-1 + i$ to $1 + i$ is \\
+
+\bigskip
+\begin{Answer}
+\[ \hspace{3cm} - \, \frac{4}{5} \hspace{3cm}~ \]
+\end{Answer}
+
+      
+\end{labeling}
+
+
+
+\comment{===========================================================}
+\noindent\rule[0.5ex]{\linewidth}{1pt} 
+\newpage
+\begin{Question}[1b - Flow Past an Obstacle ]{}
+
+ Consider the obstacle $K$ comprising those points that lie on or inside
+the ellipse
+
+\[ \set{x + iy}{ \Bigg(\, \frac{x}{25} \,\Bigg)^2 \,+\, \Bigg(\, \frac{y}{7} \,\Bigg)^2 \EQ \frac1{16} } \]
+
+\bigskip
+\begin{labeling}{(iii) }
+  \item [(i)] Use Theorem 3.2 and the result of Exercise 3.2(a) on pages 38-39 of Book D (which you can assume) to prove that the function
+  
+\[ f(z) \EQ \frac1{2} \left(\, z + z \sqrt{1 - \frac{36}{z^2}} \,\right) \]
+
+is a one-to-one conformal mapping from $\C - K$ onto $\C - K_4$, where
+
+\[ K_4 \EQ \set{z}{\abs{z} \leq 4} \]
+
+\bigskip  
+  \item [(ii)]  Verify that $f$ satisfies the Laurent series condition of the Flow Mapping Theorem.\\
+  
+  \item [(iii)]  Use Lemma 4.1 on page 53 of Book D to prove that 
+  
+\[ f(z)  \EQ z - \frac{9}{f(z)} \qquad \text{and} \qquad 
+   f'(z) \EQ \frac{f(z)}{z \sqrt{1 - 36/z^2}} \]
+
+\bigskip
+  \item [(iv)] Deduce that the solution to the Obstacle Problem for $K$ with circulation $4\pi$ around $K$ is
+
+\[ q(z) \EQ \conj{\Bigg(\,  1 \,-\, \frac{25}{z f(z)} \,-\, \frac{2i}{z} \,\Bigg) \, \cross \, \frac1{\sqrt{1 - 36/z^2}} }  \]
+  
+\bigskip
+  \item [(v)] Verify that $\displaystyle \lim_{z\to\infty} q(z) = 1$ for the function $q$ in part (b)(iv) \\
+      
+\end{labeling}
+
+\bigskip
+\end{Question}
+
+\setcounter{equation}{0}
+
+\newpage
+\begin{labeling}{(iii) }
+  \item [(i)] The question is "Prove that the function
+  
+\[ f(z) \EQ \frac1{2} \left(\, z + z \sqrt{1 - \frac{36}{z^2}} \,\right) \]
+
+is a one-to-one conformal mapping from $\C - K$ onto $\C - K_4$, where $K$ are the points that lie on or inside the ellipse
+
+\[ K \EQ \set{x + iy}{ \Bigg(\, \frac{x}{25} \,\Bigg)^2 \,+\, \Bigg(\, \frac{y}{7} \,\Bigg)^2 \EQ \frac1{16} } \]
+
+and
+
+\[ K_4 \EQ \set{z}{\abs{z} \leq 4}" \]
+  
+\bigskip
+"One-to-one and onto" is another way of saying "bijective". A bijective function is depicted on the right side of the following figure; \\
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{"M337-TMA04-Q1b1-1"}
+\end{figure}
+  
+\bigskip
+We notice that the above function, $f(z)$ has the same format as the "inverse function" mentioned in Theorem 3.2(c) (TB Ref: Book~D, Unit~1 pg~38)(HB Ref: pg~85, Unit~D1, Section~3, point~5)  \\
+
+\begin{figure}[H]
+ 	\centering
+ 	\includegraphics[width=0.9\linewidth]{"M337-TMA04-Q1b1-2"}
+ \end{figure} 
+  
+\bigskip
+In our function $a$ has the value of 3, so we are clearly dealing with the Joukowski function 
+
+\[ J_3 \EQ z \,+\, \frac{3^2}{z} \]
+
+which restricted to $\set{z}{\abs{z} > 3}$ has the inverse function
+
+\[ J_3^{-1}(w) \EQ  f(w) \EQ \frac1{2} \left(\, w + w \sqrt{1 - \frac{36}{w^2}} \,\right)  \qquad (w \in \C - [-6,6]) \]
+
+\bigskip
+
+Keeping in mind that,
+
+\begin{TextBox} [width=0.95, frame=black!40] {}
+    A function $f : X \to Y$ is bijective \underline{if and only if it is invertible}, that is, there is a function $g: Y \to X$  such that $g \circ f =$ identity function on $X$ and $f \circ g =$ identity function on $Y$. This function maps each image to its unique preimage.
+%        
+\begin{flushright}
+{\footnotesize https://en.wikipedia.org/wiki/Bijection,\_injection\_and\_surjection}
+\end{flushright}
+    
+\end{TextBox}
+
+we deduce that $f(z)$ is a one-to-one onto mapping. We shall now consider the domains and images of $f(z)$.\\
+\newpage
+Our problem can be visualised as follows:\\
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{"M337-TMA04-Q1b1-3"}
+\end{figure}
+  
+Figuratively speaking, we are asked to prove that all the blue points on the left are in one-to-one correspondence with the blue points on the right! Although Theorem 3.2 guarantees that all the points, blue and pink, on the left are in a one-to-one correspondence with points, blue and pink, on the right, we may have a situation as the one depicted in our first figure, where a "pink dot" is mapped to a "blue dot". So Theorem 3.2 is insufficient to prove our required statement. \\
+
+\bigskip
+To reach our conclusion, we will use the result proved in Exercise 3.2(a) on pages 39 of Book D: \\
+
+\bigskip
+"If $r > a$, then $J_a$ is a one-to-one mapping of the circle $C_r$
+onto the ellipse in the $w$-plane (where $w = u + iv$) with equation
+
+\[ \frac{u^2}{(r + a^2/r)^2} \,+\, \frac{v^2}{(r - a^2/r)^2} \EQ 1 \]
+
+\bigskip
+shown in the figure below."   
+  
+\begin{figure}[H]
+  	\centering
+  	\includegraphics[width=0.9\linewidth]{"M337-TMA04-Q1b1-4"}
+  \end{figure}  
+
+If we look carefully at the above equation, we will see that by substituting $r$ with 4 and $a$ with 3, we obtain the equation for the ellipse given in the problem statement. That is, the ellipse is equal to $J_3(C_4)$.
+\begin{IEEEeqnarray*}{rCcCcCc}
+E_{a,r} & \colon \qquad & \frac{u^2}{(r + a^2/r)^2} &\,+\,& \frac{v^2}{(r - a^2/r)^2} & \EQ & 1  \\
+\\
+E_{3,4} & \colon \qquad & \frac{u^2}{(4 + 3^2/4)^2} &\,+\,& \frac{v^2}{(4 - 3^2/4)^2} & \EQ & 1  \\
+\\
+& \colon \qquad & \left(\, \frac{u}{25/4} \,\right)^2 &\,+\,& \left(\, \frac{v}{7/4} \,\right)^2 & \EQ & 1  \\
+\\
+& \colon \qquad & \left(\, \frac{u}{25} \,\right)^2 &\,+\,& \left(\, \frac{v}{7} \,\right)^2 & \EQ & \frac1{16}  \\
+\end{IEEEeqnarray*}
+
+  
+The statement proved in Exercise 3.2(a), basically says that $J_a$ will map any circle with radius $r > a$ in the $z$-plane, to an ellipse in the $w$-plane. One could possibly imagine something like this:
+
+\begin{figure}[H]
+  	\centering
+  	\includegraphics[width=0.9\linewidth]{"M337-TMA04-Q1b1-5"}
+  \end{figure}  
+ 
+But from the figure we can see that a red-circle point and a blue-circle point are mapped the one and the same ellipse point. This contradicts $J_a$ being a bijective function. So the above figure is incorrect and not possible. If we map non-intersecting circles they have to produce non-intersecting ellipsis. The mapping, $J_a$, is a one-to-one correspondence which means that the resulting images cannot have points in common.\\
+
+This means that, if we map any circle with $r > 3$ and not equal to 4 with the function $J_3$, then the resulting ellipse will either be entirely inside the ellipse, $E_{3,4}$, or outside it.\\
+
+After all these preliminaries, we can now prove the required statement.\\
+
+By Theorem 3.2
+
+\begin{itemize}
+\item $J_3$ maps the region $\set{z}{\abs{z}> 3}$ conformally onto the
+region $\C - [-6,6]$. \\ 
+
+\item The restriction of $J_3$ to $\set{z}{\abs{z} > 3}$ has inverse function $J^{-1}_3(w) = f(w)$ with $(w \in \C - [-6,6])$. \\ 
+
+\item The given function $f(z)$ is equal to the inverse of the Joukowski equation $J_3$ restricted to $(\set{z}{\abs{z} > 3}$. \\
+
+\end{itemize}
+
+and by the statement proved in Exercise 3.2(a)
+
+\begin{itemize}
+
+\item The function $J_3$ maps the generic circle $C_r$ with $r> 3$ to an ellipse that crosses the positive real axis at the point $p(r) = (r + 9/r)$. The derivative of $p(r)$ is equal to  $p'(r) = 1 - 9/r^2$, which is always greater than zero since $r>3$. So circles smaller than $C_4$ will be mapped to ellipsis contained in $E_{3,4} = J_3(C4)$ and bigger ones will be mapped to ellipsis encompassing $E_{3,4} = J_3(C4)$.\\
+
+\end{itemize}
+
+From the above, we deduce that points in $K_4 - K_3$ will be one-to-one conformally mapped by $J_3$ onto $K - [-6,6]$ and points in $\C - K_4$ will be one-to-one conformally mapped by $J_3$ onto $\C - K$. And hence conclude, since $J_3$ and $f(z)$ are bijective inverses, that the inverse of function $J_3$ restricted to  $\set{z}{\abs{z} > 3}$
+ \\
+
+\begin{Answer}  
+\[ f(z) \EQ \frac1{2} \left(\, z + z \sqrt{1 - \frac{36}{z^2}} \,\right) \]
+
+is a one-to-one conformal mapping from $\C - K$ onto $\C - K_4$
+\end{Answer}
+
+  
+\newpage  
+
+  \item [(ii)]  Looking at the requirement that a function needs to satisfy the Laurent series condition in order to apply the Flow Mapping Theorem and that often these functions will be inverse Joukowski functions, I felt that resolving this problem for a single function, $f$, was contrary to the spirit of the "Lazy Mathematician", who prefers to "Do it Well, but Do it Once!".\\
+
+\bigskip  
+So, on the following page I prove the following Lemma: \\
+
+\bigskip
+\begin{TextBox} {Lemma}
+All inverse Joukowski Functions, 
+\[ J_a^{-1}(z) \EQ \frac1{2} \left(\,z + z \, \sqrt{1 - 4a^2/z^2} \,\right)   \qquad (w \in \C - [-2a,2a]) \]
+with $J_a(w)$ restricted to $\set{w}{\abs{w} > a > 0}$, can be written as
+%
+\[ J_a^{-1}(z) \EQ z \,-\, \frac{2a^2}{z} \,-\, \frac{2a^4}{z^3} \,-\,  \frac{4a^6}{z^5}  \,-\, \cdots \quad \text{for} \quad \abs{z} > 2a > 0 \]
+
+which is of the form given in the Laurent series condition of the Flow Mapping Theorem. \\
+\end{TextBox}
+
+\bigskip
+The Lemma 4.1 given in the textbook shows that we often use the Joukowski functions in Obstacle Problems, so I am surprised not to find the Lemma I prove already included in the "Useful Toolbox of Lemma 4.1"!
+
+
+
+
+
+  
+
+\begin{TextBox} [width=0.98, frame=black!60,  titlebar=cyan!10]{Lemma: \quad All $J_a^{-1}$ are compatible Laurent Series}
+\begin{small}
+%
+\begin{IEEEeqnarray*}{rCl}
+\intertext{From Theorem 3.2 (c) we have the inverse function of a generic Joukowski Function $J_a(w)$ restricted to $\set{w}{\abs{w} >a}$  
+%
+\[ J_a^{-1}(z) \EQ \frac1{2} \left(\, z + z \sqrt{1 - 4a^2/z^2} \,\right)  \qquad (z \in \C - [-2a,2a]) \]
+%
+Letting
+\[  Z = \frac{2a}{z} \qquad \text{and} \qquad \abs{z} > 2a \]
+ we apply the binomial series to the square root term.}
+\left( 1 - Z^2 \right)^{1/2} & \EQ & 1 + \binom{1/2}{1}\left(-Z^2\right) + \binom{1/2}{2}\left(-Z^2\right)^2 + \cdots 
+\intertext{where}
+\binom{1/2}{1} 
+& \EQ & \frac{\left(\frac{1}{2}\right)}{1!} \EQ \frac{1}{2}\\
+\\ 
+\binom{1/2}{2} 
+&\EQ & \frac{\left(\frac{1}{2}\right)\left(-\frac{1}{2}\right)}{2!} 
+ \EQ \frac{-1}{2!\, 2^2} 
+ \EQ -\frac{1}{8}\\
+\\ 
+\binom{1/2}{3} 
+&\EQ & \frac{\left(\frac{1}{2}\right)\left(-\frac{1}{2}\right)\left(-\frac{3}{2}\right)}{3!} 
+ \EQ \frac{3}{3!\, 2^3} 
+ \EQ \frac{1}{16}\\
+\\ 
+\binom{1/2}{4} 
+&\EQ & \frac{\left(\frac{1}{2}\right)\left(-\frac{1}{2}\right)\left(-\frac{3}{2}\right)\left(-\frac{5}{2}\right)}{4!} 
+ \EQ \frac{-15}{4!\, 2^4} 
+ \EQ -\frac{5}{128}\\
+%\\ \\
+%\binom{1/2}{5} 
+%&\EQ & \frac{\left(\frac{1}{2}\right)\left(-\frac{1}{2}\right)\left(-\frac{3}{2}\right)\left(-\frac{5}{2}\right)\left(-\frac{7}{2}\right)}{5!} 
+% \EQ \frac{105}{5!\, 2^5} 
+% \EQ \frac{7}{256}\\
+\intertext{giving}
+\left( 1 - Z^2 \right)^{1/2} & \EQ & 1 - \frac{1}{2}\,Z^2 - \frac{1}{8}\,Z^4 -  \frac{1}{16}\,Z^6 -  \frac{5}{128}\,Z^8  - \cdots \\
+\intertext{Hence,}
+ J_a^{-1}(z) & \EQ & \frac1{2} \left(\, z + z \sqrt{1 - 4a^2/z^2} \,\right)  \qquad (z \in \C - [-2a,2a]) 
+\\ \\
+& \EQ &\frac1{2} \left(\, z + z \left( 1 - \frac{1}{2}\,Z^2 - \frac{1}{8}\,Z^4 -  \frac{1}{16}\,Z^6  - \cdots \right) \,\right)
+\\ \\
+& \EQ & z \,-\, \frac{2a^2}{z} \,-\, \frac{2a^4}{z^3} \,-\,  \frac{4a^6}{z^5}  \,-\, \cdots \quad \text{for} \quad \abs{z} > 2a > 0
+\intertext{Which shows that all $J_a^{-1}$ are of the form given in the Laurent series condition of the Flow Mapping Theorem.}
+\end{IEEEeqnarray*}
+
+\end{small}
+\end{TextBox}
+
+Now it will be easy to verify that $f$ satisfies the Laurent series condition of the Flow Mapping Theorem. (TB Ref: Book~D, Unit~1 pg~51)(HB Ref: pg~87, Unit~D1, Section~4, point~7)\\
+
+\bigskip
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{"M337-TMA04-Q1b2-1"}
+\end{figure}
+
+
+The function $f(z)$ is equal to $J_3^{-1}(z)$, the inverse of the Joukowski function $J_3(w)$, so by the Lemma previously proven, we have
+
+\[ f(z) \EQ J_3^{-1}(z) \EQ   z \,-\, \frac{18}{z} \,-\, \frac{162}{z^3} \,-\,  \frac{2916}{z^5}  \,-\, \cdots \quad \text{for} \quad \abs{z} > 6 > 0 \]
+
+which is of the form given in the Laurent series condition of the Flow Mapping Theorem. \\
+
+\bigskip
+Hence, we have verified that \\
+
+\bigskip
+\begin{Answer}
+\[ f(z) \]
+is of the form given in the Laurent series condition of the Flow Mapping Theorem.
+\end{Answer}
+
+\newpage
+  \item [(iii)]  To prove that 
+  
+\[ f(z)  \EQ z - \frac{9}{f(z)} \qquad \text{and} \qquad 
+   f'(z) \EQ \frac{f(z)}{z \sqrt{1 - 36/z^2}} \]
+
+we shall use Lemma 4.1 (TB Ref: Book~D, Unit~1 pg~53)(HB Ref: pg~87, Unit~D1, Section~4, point~8) \\
+
+\bigskip
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{"M337-TMA04-Q1b2-2"}
+\end{figure}
+ 
+Considering that the expression $J_a^{-1}$ given in Lemma 4.1 is equivalent to our $f(z) = J_3^{-1}(z)$, taking point (a) we have
+
+\[ f(z) \,+\, \frac{3^2}{f(z)} \EQ z \qquad \text{which is equivalent to} \qquad f(z)  \EQ z - \frac{9}{f(z)} \]
+
+\bigskip
+Taking point (c), we have
+
+\[ f'(z) \EQ \frac{f(z)}{z \, \sqrt{1 - 4 \cdot 3^2 / z^2}} 
+  \quad \text{which is equivalent to} \quad 
+ f'(z) \EQ \frac{f(z)}{z \, \sqrt{1 - 36/z^2}} \]
+
+\bigskip
+Hence, we have proven that \\
+
+\bigskip
+\begin{Answer}
+\[ \qquad f(z)  \EQ z - \frac{9}{f(z)} \qquad \text{and} \qquad 
+   f'(z) \EQ \frac{f(z)}{z \sqrt{1 - 36/z^2}}  \qquad ~ \]
+\end{Answer}   
+
+
+\newpage
+  \item [(iv)] Our ellipse-shaped obstacle $K$ has a one-to-one conformal mapping, $f(z)$, from $\C - K$ onto $\C - K_4$, so the problem of finding the velocity function is amenable to the Flow Mapping Theorem, reproduced above. \\
+
+\bigskip  
+The Flow Mapping Theorem tells us that the velocity function  
+
+\[ q(z) \EQ q_{a,c}\left(f(z)\right) \, \conj{f'(z)} \qquad (z \in \C - K) \]
+
+is the unique solution to the Obstacle Problem for $K$ with circulation $2\pi c$ around $K$. Since our circulation is $4\pi$, $c$ is equal to 2.\\
+
+\bigskip
+The expression $q_{a,c}(z)$ is the velocity function for circular streamlines around a vortex or obstacle with strength $\abs{2\pi c}$, where $c<0$ is clockwise. This is detailed in Theorem 4.1 (TB Ref: Book~D, Unit~1 pg~45)(HB Ref: pg~86, Unit~D1, Section~4, point~2). \\
+
+\bigskip
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{"M337-TMA04-Q1b4-1"}
+\end{figure}
+
+\newpage
+
+Now that is a lot of complicated words that forgets to explain a process which, ultimately, is simple. Not being aware of this process, makes the subject arcane and harder to understand. \\
+
+\bigskip
+The process is a simple and natural one - quite universal! Let's give an example:\\
+
+\bigskip
+\begin{TextBox}[width=0.90]{}
+Take the number LVIII, now add CCXXI to it, then divide it by III and square it, hence add XXXI and divide by XXXV. What is the answer? 
+\end{TextBox}
+
+\bigskip
+The ancient Romans would struggle to answer this question using only Roman numerals! Today we would, naturally without thinking, move the numbers from a Roman numeral notation to a calculation-friendly Arabic number system, perform the calculations using positional notation and then transfer the answer back to Roman numerals to obtain CCXLVIII. \\ 
+
+\bigskip
+The steps of the process are:
+\begin{enumerate}
+\item Move the problem from a complicated framework to a simple framework.
+\item Perform your calculations in the simple framework. 
+\item Move your answer back to the complicated framework. 
+\end{enumerate}
+
+\bigskip
+The figure on the following page illustrates this "Universal Process" applied to our complicated Obstacle Flow Problem. \\
+
+\newpage
+\begin{figure}[H]
+  	\centering
+  	\includegraphics[width=0.98\linewidth]{"M337-TMA04-Q1b4-FMT"}
+  \end{figure}  
+  
+As we can see the steps are:\\
+
+\begin{enumerate}
+\item Map the ellipse-shape obstacle in the blue $\blue{z}$-plane to a circle-shape obstacle in the red $\red{z}$-plane, which we did in part (i).
+
+\[ J^{-1} \, \colon  \quad  \blue{z} \, \mapsto \red{z}  \]
+
+\[ \red{z} \EQ  f(\blue{z}) \EQ J_a^{-1}(\blue{z}) \EQ  \frac1{2} \left(\, \blue{z} + \blue{z} \sqrt{1 - \frac{4a^2}{\blue{z}^2}} \,\right)  \qquad (\blue{z} \in \C - K) \]
+
+which in our case is
+
+\[ \red{z} \EQ  f(\blue{z}) \EQ J_3^{-1}(\blue{z})  \EQ \frac1{2} \left(\, \blue{z} + \blue{z} \sqrt{1 - \frac{36}{\blue{z}^2}} \,\right)  \qquad (\blue{z} \in \C - K) \]
+
+\newpage
+\item Obtain the Velocity and Complex Potential Functions of the fluid around the circular obstacle in the red $\red{z}$-plane. These are simply stated in Theorem 4.1.
+
+\[ \text{Thm 4.1} \, \colon  \quad  \red{z} \, \mapsto \, \red{\Omega}  \, \mapsto \, \red{q}  \]
+
+\bigskip
+\[ \red{\Omega} \EQ \Omega_{a,c}(\red{z}) \EQ   \red{z} \,+\, \frac{a^2}{\red{z}} \,-\, ic \Log{\red{z}}  \qquad (\red{z} \in \C_\pi) \]
+and
+\[ \red{q} \EQ q_{a,c}(\red{z}) \EQ  \conj{\,1 \,-\, \frac{a^2}{\red{z}^2} \,-\, \frac{ic}{\red{z}} \,} \qquad (\red{z} \in \C - \{0\}) \]
+
+\bigskip
+Having applied the relationship :
+
+\[ q_{a,c}(\red{z}) \EQ \conj{\, \Omega_{a,c}'(\red{z}) \,} \qquad (\red{z} \in \C_\pi) \]
+
+\bigskip
+In our case we have :
+
+\[ \red{\Omega} \EQ \Omega_{4,c}(\red{z}) \EQ   \red{z} \,+\, \frac{16}{\red{z}} \,-\, ic \Log{\red{z}}  \qquad (\red{z} \in \C_\pi) \]
+and
+\[ \red{q} \EQ q_{4,c}(\red{z}) \EQ  \conj{\,1 \,-\, \frac{16}{\red{z}^2} \,-\, \frac{ic}{\red{z}} \,} \qquad (\red{z} \in \C - \{0\}) \]
+
+
+\bigskip
+It is worth noting that the variable $a$ is used both in the "Joukowski Step" and in the "Theorem 4.1 Step", but they are not the same object! In the "Joukowski Step" it denotes the Joukowski function used; in our case it was 3. In the "Theorem 4.1 Step" it denotes the size of the radius of the circular obstacle;  in our case, equal to 4.\\
+
+\bigskip
+We should think of $a$ as a local variable to each process step. But, in order to avoid undue effort and confusion, it would be much better to use different notations, such as $q_{r,c}$ and $\Omega_{r,c}$ in the place of $q_{a,c}$ and $\Omega_{a,c}$, which I shall do in the next step.
+
+\newpage
+\item Convert the Velocity and Potential back into the ellipse-obstacle Space using the Flow Mapping Theorem.
+
+\[ \text{Flow Mapping Theorem} \, \colon  \quad  \red{\Omega} \, \mapsto \, \blue{\Omega}  \, \mapsto \, \blue{q}  \]
+
+
+\bigskip
+\[ \blue{\Omega} \EQ \Omega(\blue{z}) \EQ \Omega_{r,c}(\red{z}) \qquad (\red{z} \in \C_\pi) \]
+and
+\[ \blue{q} \EQ q(\blue{z}) \EQ  \conj{\, \Omega'(\blue{z}) \,}  \]
+
+\bigskip
+but
+
+\[ \conj{\, \dv{\left(\, \Omega(\blue{z}) \,\right)}{\blue{z}} \,} \EQ  \conj{\, \dv{ \left(\, \Omega_{r,c}(\red{z}) \,\right)}{\blue{z}}  \,} \EQ \conj{\, \dv{\left( \Omega_{r,c}(\red{z}) \right)}{\red{z}} \cdot \dv{\left( \red{z}\right)}{\blue{z}}   \,}  \EQ q_{r,c}(\red{z}) \cdot \conj{\, \dv{\left( \red{z}\right)}{\blue{z}}   \,} \]
+
+\begin{IEEEeqnarray*}{rCl}
+\intertext{which upon substituting $\red{z} = f(\blue{z}) =  J_a^{-1}(\blue{z})$, becomes}
+\blue{q}  \EQ  q(\blue{z}) & \EQ & q_{r,c}\left(\,f(\blue{z}) \,\right) \cdot \conj{\, f'(\blue{z}) \,} \qquad \qquad (\blue{z} \in \C - K) \\
+\intertext{or otherwise}
+\blue{q}  \EQ  q(\blue{z}) & \EQ & q_{r,c}\left(\,J_a^{-1}(\blue{z}) \,\right) \cdot \conj{\, \left(\, J_a^{-1} \,\right)'(\blue{z}) \,}    \\
+\\
+& \EQ &  \conj{\, \Bigg(\, \,1 \,-\, \frac{r^2}{\left(\, J_a^{-1}(\blue{z}) \,\right)^2} \,-\, \frac{ic}{J_a^{-1}(\blue{z})}  \,\Bigg) \,} 
+\; \cdot \; \conj{ \left(\, J_a^{-1} \,\right)'(\blue{z})} 
+\end{IEEEeqnarray*}
+
+
+\bigskip
+as per the Flow Mapping Theorem.\\
+
+
+\bigskip
+In our case, for the Velocity Function, we have :
+
+\[ \blue{q} \EQ q(\blue{z}) \EQ 
+ \Bigg(\, \conj{\,1 \,-\, \frac{16}{\left(\, f(\blue{z}) \,\right)^2} \,-\, \frac{2i}{f(\blue{z})} \,} \,\Bigg) 
+\cdot \Bigg(\, \conj{ f'(\blue{z})} \,\Bigg) \qquad (\blue{z} \in \C - K) \] 
+
+
+\end{enumerate}
+
+\newpage
+Now we need to show that the function we were given
+
+\[ q(z) \EQ \conj{\Bigg(\,  1 \,-\, \frac{25}{z f(z)} \,-\, \frac{2i}{z} \,\Bigg) \, \cross \, \frac1{\sqrt{1 - 36/z^2}} }  \]
+
+is equivalent to the one we arrived at by deduction
+
+\[ q(\blue{z}) \EQ 
+ \Bigg(\, \conj{\,1 \,-\, \frac{16}{\left(\, f(\blue{z}) \,\right)^2} \,-\, \frac{2i}{f(\blue{z})} \,} \,\Bigg) 
+\cdot \Bigg(\, \conj{ f'(\blue{z})} \,\Bigg)  \] 
+
+\bigskip
+It is clearly an exercise, useful and desirable, in algebraically simplifying the typical result obtained in applying the Flow Mapping Theorem. For this purpose, a toolbox of identities has been assembled in the list given in Lemma 4.1 (TB Ref: Book~D, Unit~1 pg~53)(HB Ref: pg~87, Unit~D1, Section~4, point~8). \\
+
+\bigskip
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{"M337-TMA04-Q1b2-2"}
+\end{figure}
+
+However, we need to stress that this Lemma has nothing to do with resolving the Obstacle Problem of fluid flow. It is a pure algebraic manipulation exercise, that has been made complicated because of all the superscripts, subscripts and brackets in the identity equation. I spent well over an hour trying to apply the given identities without success, until I decided to apply my previously explained "Universal Process".
+(The issue was no more to reconcile the two functions, but rather to find a way to do it quickly, efficiently and applicable to other circumstances - e.g. under exam situation!)\\
+
+\bigskip
+In order to have a general method of dealing with these types of problems, I will work from the generic expression for \,$q(\blue{z})$  
+
+\begin{IEEEeqnarray*}{rCl}
+\blue{q}  \EQ  q(\blue{z}) & \EQ & q_{r,c}\left(\,J_a^{-1}(\blue{z}) \,\right) \cdot \conj{\, \left(\, J_a^{-1} \,\right)'(\blue{z}) \,}    \\
+\\
+& \EQ &  \conj{\, \Bigg(\, \,1 \,-\, \frac{r^2}{\left(\, J_a^{-1}(\blue{z}) \,\right)^2} \,-\, \frac{ic}{J_a^{-1}(\blue{z})}  \,\Bigg) \,} 
+\; \cdot \; \conj{ \left(\, J_a^{-1} \,\right)'(\blue{z})} 
+\end{IEEEeqnarray*}
+
+Stepwise we have:\\
+
+\begin{labeling}{Step 1. xxx }
+\item [Step 1.] Simplify the context, by getting rid of all the cumbersome notation, which we do by rewriting the Lemma 4.1 identities as:\\
+
+%\begin{labeling}{(b) }
+%  \item [(a)] J^2 \,+\, \alpha^2 \EQ Jz \\
+ % \item [(b)] J^2 \,-\, \alpha^2 \EQ Jzs \\
+%  \item [(c)] J' \EQ \frac{J^2}{J^2 \,-\, \alpha^2} \EQ \frac{J}{zs}
+%\end{labeling}
+
+\bigskip
+\begin{labeling}{(iii) }
+\item [(a)]  \quad \( \displaystyle J^2 \,+\, \alpha^2 \EQ Jz  \)
+\item [(b)]  \quad \( \displaystyle J^2 \,-\, \alpha^2 \EQ Jzs  \)
+\item [(c)]  \quad \( \displaystyle J' \EQ \frac{J^2}{J^2 \,-\, \alpha^2} \EQ \frac{J}{zs}  \) \\
+\end{labeling}
+
+\bigskip
+where \, $J = J_\alpha^{-1}(z)$, \,$J' = \left( J_a^{-1} \right)'(z)$, \, $z = z$ \, and \, $s~=~\sqrt{1 - 4\alpha^2/z^2}$. \\
+
+\bigskip
+The generic expression for \,$q(\blue{z})$ \, becomes 
+
+\[ q(z) \EQ   \conj{\, \Bigg(\, \,1 \,-\, \frac{r^2}{J^2} \,-\, \frac{ic}{J}  \,\Bigg) \,} \; \cdot \; \conj{J'} \] 
+
+\bigskip
+and we want to arrive at an expression of
+
+\[ q(z) \EQ \conj{\Bigg(\,  1 \,-\, \frac{r^2 + \alpha^2}{z J} \,-\, \frac{ic}{z} \,\Bigg) \, \cross \, \frac1{s} }  \]
+
+\newpage
+\item [Step 2.] Resolve problem in simplified context. The obvious first task is to remove the variable $J'$ and all possible denominators.\\
+
+\begin{IEEEeqnarray*}{rCl}
+q(z)  & \EQ &   \conj{\, \Bigg(\, \,1 \,-\, \frac{r^2}{J^2} \,-\, \frac{ic}{J}  \,\Bigg)  \; \cross \; \frac{J^2}{J^2 - \alpha^2} } \\ 
+\\ \\
+ & \EQ & \conj{\, \Bigg(\, J^2 \,-\, r^2 \,-\, icJ  \,\Bigg)  \; \cross \; \frac{1}{J^2 - \alpha^2} } \\ 
+\\ 
+\intertext{As we need the expression $r^2 + \alpha^2 = 25$ in our final result,}
+\\
+ & \EQ & \conj{\, \Bigg(\, J^2 \,+\, \alpha^2 \,-\, \left( r^2 + \alpha^2 \right) \,-\, icJ  \,\Bigg)  \; \cross \; \frac{1}{J^2 - \alpha^2} } \\ 
+\intertext{Looking at the last term were we want a $1/s$}
+ & \EQ & \conj{\, \Bigg(\, J^2 \,+\, \alpha^2 \,-\, \left( r^2 + \alpha^2 \right) \,-\, icJ  \,\Bigg)  \; \cross \; \frac{1}{Jzs} } \\ 
+\\ \\
+ & \EQ & \conj{\, \Bigg(\, \frac{J^2 + \alpha^2}{Jz} \,-\, \frac{ r^2 + \alpha^2}{Jz} \,-\, \frac{ic}{z}  \,\Bigg)  \; \cross \; \frac{1}{s} } \\ 
+\\ 
+\intertext{But $J^2 + \alpha^2 = Jz$, hence we arrive at our desired result}
+\\ 
+ & \EQ & \conj{\, \Bigg(\, 1 \,-\, \frac{ r^2 + \alpha^2}{Jz} \,-\, \frac{ic}{z}  \,\Bigg)  \; \cross \; \frac{1}{s} } \\ 
+\\ 
+\end{IEEEeqnarray*}
+
+\bigskip
+\item [Step 3.] Move our result back to the original notational context.\\
+
+\[   q(z)  \EQ  \conj{\, \Bigg(\, 1 \,-\, \frac{ r^2 + \alpha^2}{z\, J_\alpha^{-1}} \,-\, \frac{ic}{z}  \,\Bigg)  \; \cross \; \frac{1}{\sqrt{1 - 4\alpha^2/z^2} } \, } \]
+
+\end{labeling}
+
+\newpage
+Since \, $r = 4$, \, $\alpha = 3$, \, $c = 2$ \, and $J_\alpha^{-1} = f(z)$ upon substituting into the result of Step 3,  we have \\
+
+\[   q(z)  \EQ  \conj{\, \Bigg(\, 1 \,-\, \frac{ 4^2 + 3^2}{z\, f(z)} \,-\, \frac{ic}{z}  \,\Bigg)  \; \cross \; \frac{1}{\sqrt{1 - 4 \cdot 3^2/z^2} } \, } \]
+
+\bigskip
+which is equal to the function we had to prove \\
+
+\bigskip
+\begin{Answer}
+\[ \quad q(z) \EQ \conj{\Bigg(\,  1 \,-\, \frac{25}{z f(z)} \,-\, \frac{2i}{z} \,\Bigg) \, \cross \, \frac1{\sqrt{1 - 36/z^2}} }  \quad ~\]
+\end{Answer}
+
+
+
+
+
+  
+\newpage
+  \item [(v)] To verify that $\displaystyle \lim_{z\to\infty} q(z) = 1$ for the function 
+
+\[  q(z) \EQ \conj{\Bigg(\,  1 \,-\, \frac{25}{z f(z)} \,-\, \frac{2i}{z} \,\Bigg) \, \cross \, \frac1{\sqrt{1 - 36/z^2}} }  \]
+
+\bigskip
+we shall first recall what was written on page 209 of Book C Unit C3\\
+
+\bigskip
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{"M337-TMA04-Q1b5-1"}
+\end{figure}
+
+\bigskip
+so "to verify that $\displaystyle \lim_{z\to\infty} q(z) = 1$" means "to verify that $\displaystyle \lim_{w\to 0} q(1/w) = 1$".\\
+
+\bigskip
+We shall also need the Combination Rules for Limits of Functions (HB Ref: pg~33, Unit~A3, Section~2, point~8) \\
+
+\bigskip
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{"M337-TMA04-Q1b5-2"}
+\end{figure}
+
+\newpage
+keeping in mind that 
+
+\[ \lim_{w\to 0} \, w \EQ \lim_{w\to 0} \, \conj{w} \EQ 0 \]
+
+as in both cases the magnitudes of $w$ and $\conj{w}$ go to zero as $w$ goes to zero.\\
+
+\bigskip
+Furthermore, given the Properties of the Complex Conjugate (HB Ref: pg~14, Unit~A1, Section~1, point~9) \\
+
+\bigskip
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{"M337-TMA04-Q1b5-3"}
+\end{figure}
+
+we add the rule 
+
+\[ \conj{\,\sqrt{z} \,} \EQ   \sqrt{ \, \conj{\,z\,} \,}  \]
+
+which can easily be verified once you substitute $z_1 = z_2 = \sqrt{z}$ in point (iii) above and then follow through. \\
+
+\bigskip
+The above reminders guarantee that both the conjugate operator and the $\displaystyle \lim_{w\to 0}$ operator will distribute to the single terms in the function for $q(z)$.\\
+
+\bigskip
+One last point before showing that required limit is equal to one, is the need to determine the limit of $f(1/w)$ as $w$ tends to zero. \\
+
+\bigskip
+From point (ii) we have for any inverse Joukowski Function
+
+\[ \lim_{z\to\infty} {\, J_a^{-1}(z)\,}  \EQ \lim_{z\to\infty} \left(\,  z \,-\, \frac{2a^2}{z} \,-\, \frac{2a^4}{z^3}  \,-\, \cdots \,\right) \quad \text{for} \quad \abs{z} > 2a > 0 \]
+
+\bigskip
+substituting $z$ with $1/w$
+
+\[ \lim_{w\to 0} {\, J_a^{-1}(1/w)\,}  \EQ \lim_{w\to\ 0} \left(\, \frac1{w} \,-\, 2a^2w \,-\, 2a^4w^3  \,-\, \cdots \,\right) \quad \text{for} \quad \abs{1/w} > 2a > 0 \]
+
+\bigskip
+which means we will be able to substitute $\displaystyle \lim_{z\to\infty} f(z)$ with $\displaystyle \lim_{w\to 0} 1/w$, as the other terms go to zero.\\
+
+\begin{IEEEeqnarray*}{rCl}
+\intertext{Now lets look at our function for $q(z)$}
+\\
+\lim_{z\to\infty} q(z) & \EQ & \lim_{z\to\infty} \left(\, \conj{\Bigg(\,  1 \,-\, \frac{25}{z f(z)} \,-\, \frac{2i}{z} \,\Bigg) \, \cross \, \frac1{\sqrt{1 - 36/z^2}} }  \,\right) \\
+\\ \\
+\lim_{w\to 0} q(1/w) & \EQ & \lim_{w\to 0} \left(\, \conj{\Bigg(\,  1 \,-\, w^2 25 \,-\, w2i \,\Bigg) \, \cross \, \frac1{\sqrt{1 - 36w^2}} }  \,\right) \\
+\\ \\
+ & \EQ &  \conj{\Bigg(\,  1 \,-\, 0 \,-\, 0 \,\Bigg) \, \cross \, \frac1{\sqrt{1 - 0}} } \EQ 1  \\
+\end{IEEEeqnarray*}
+
+Hence, we have verified that\\
+
+\bigskip
+\begin{Answer}
+\begin{center}
+ $\displaystyle \lim_{z\to\infty} q(z) = 1$ for the function 
+
+\[ \qquad q(z) \EQ \conj{\Bigg(\,  1 \,-\, \frac{25}{z f(z)} \,-\, \frac{2i}{z} \,\Bigg) \, \cross \, \frac1{\sqrt{1 - 36/z^2}} } \qquad ~ \]
+\end{center}
+\end{Answer}
+
+\end{labeling}
+
+
+\comment{===========================================================}
+\noindent\rule[0.5ex]{\linewidth}{1pt} 
+\newpage
+\begin{Question}[2a - Iteration Sequences ]{}
+
+ Let 
+ \[ f(z) \EQ 2z^2 - z + 1. \]
+
+\bigskip
+\begin{labeling}{(iii) }
+  \item [(i)]  Find the fixed points $\alpha$ and $\beta$ of the function $f$, and classify them as attracting, repelling or indifferent, identifying any attracting fixed points that are super-attracting.  \\
+  
+  \item [(ii)]  Prove that the iteration sequence
+  
+\[ z_{n+1} \EQ f(z_n),  \qquad n = 0,1,2,\dots, \]
+
+is conjugate to the iteration sequence
+
+\[ w_{n+1} \EQ P_{5/4}(w_n), \qquad n = 0,1,2, \dots, \]
+
+and determine the conjugating function $h$. \\
+  
+  \item [(iii)]  Verify that \,$h(\alpha)$\, and \,$h(\beta)$\, are the fixed points of $P_{5/4}$. \\
+
+  \item [(iv)]  Use Lemma 4.1 on page 143 of Book D to find a 2-cycle of $P_{5/4}$. Hence find a 2-cycle of $f$, and classify it as attracting (possibly super-attracting), repelling or indifferent. \\
+  
+  \item [(v)] Determine eight distinct points that lie in the keep set $K_{5/4}$.  \\
+  
+  \item [(vi)]  Determine whether or not the point 0 belongs to $K_{5/4}$. \\
+  
+      
+\end{labeling}
+
+\bigskip
+\end{Question}
+
+\setcounter{equation}{0}
+
+\bigskip
+
+ Let 
+ \[ f(z) \EQ 2z^2 - z + 1. \]
+
+\newpage
+\begin{labeling}{(iii) }
+  \item [(i)] A fixed point of a function is defined as follows (TB Ref: Book~D, Unit~1 pg~93)(HB Ref: pg~88, Unit~D2, Section~1, point~3) \\
+  
+\bigskip
+\begin{figure}[H]
+  	\centering
+  	\includegraphics[width=0.9\linewidth]{"M337-TMA04-Q2a1-1"}
+  \end{figure}  
+  
+This is clearly so because if $f(\alpha) = \alpha$, then
+
+\[ f(f(f(\;f(\alpha)\; ))) \EQ   f(f(\;f(\alpha)\;)) \EQ  f(\;f(\alpha)\;) \EQ f(\alpha) \EQ \alpha \]
+
+as we can see the iterative sequence remains at the "fixed point" $\alpha$. Given a function $f(z)$, in order to find the fixed points, it is sufficient to find the zeroes of $f(z) - z = 0$. In our case we have
+
+\begin{IEEEeqnarray*}{rCl}
+f(z) - z & \EQ & 0  \EQ  \left(\, 2z^2 - z + 1 \,\right)  \,-\, z\ \\
+\\
+ & & 0 \EQ  2z^2 - 2z + 1    \\
+\intertext{hence using the quadratic equation, we obtain}
+z & \EQ & \frac{2 \pm \sqrt{4 - 4\cdot 2 \cdot 1}} {2\cdot 2} \EQ 
+\frac{1 \pm i}{2}
+\end{IEEEeqnarray*}
+
+so $\alpha = \displaystyle \frac{1+i}{2}$ \; and \; $\beta = \displaystyle \frac{1-i}{2}$. \\
+
+\bigskip
+The fixed points are then classified based on the derivative of the generating iterative function (TB Ref: Book~D, Unit~1 pg~95)(HB Ref: pg~88, Unit~D2, Section~1, point~6)
+
+\bigskip
+\begin{figure}[H]
+  	\centering
+  	\includegraphics[width=0.9\linewidth]{"M337-TMA04-Q2a1-2"}
+  \end{figure}  
+
+\newpage
+Since 
+
+\[ \ABS{ f'(\alpha) } \EQ \ABS{ 4\alpha\,-\,1}  \EQ  \ABS{(2+2i)\,-\, 1} \EQ  \sqrt{5} \GRT 1 \] 
+and
+\[ \ABS{ f'(\beta) } \EQ \ABS{ 4\beta\,-\,1}  \EQ  \ABS{(2-2i)\,-\, 1} \EQ  \sqrt{5} \GRT 1 \] 
+
+\bigskip
+we conclude that \\
+
+\bigskip
+\begin{Answer}
+the fixed points of the function 
+ \[ f(z) \EQ 2z^2 - z + 1. \]
+are
+\begin{center}
+$\alpha = \displaystyle \frac{1+i}{2}$ \; and \; $\beta = \displaystyle \frac{1-i}{2}$ \\
+\end{center}
+\bigskip
+and both points are classified as \textbf{repelling}. \hspace{4cm} ~
+\end{Answer}
+
+
+\newpage
+  \item [(ii)]  In the expression
+  
+\[ w_{n+1} \EQ P_{5/4}(w_n), \qquad n = 0,1,2, \dots, \]
+
+the term $P_{5/4}(w_n)$ indicates a basic quadratic function (TB Ref: Book~D, Unit~2 pg~105)(HB Ref: pg~89, Unit~D2, Section~2, point~2) \\
+  
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{"M337-TMA04-Q2a2-1"}
+\end{figure}
+
+Furthermore, Theorem 2.1 (TB Ref: Book~D, Unit~2 pg~104)(HB Ref: pg~89, Unit~D2, Section~2, point~1) \\
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{"M337-TMA04-Q2a2-2"}
+\end{figure}
+
+states that the iteration sequence
+
+\[ z_{n+1} \EQ 2z_n^2 - z_n + 1,   \]
+
+is conjugate to the iteration sequence
+
+\[ w_{n+1} \EQ w_n^2 \,+\, 2 \cdot 1 \,+\, \frac1{2} \cdot (-1) \,-\,\frac1{4} \cdot (-1)^2 \EQ w_n^2 \,+\, \frac{5}{4} \EQ P_{5/4}(w_n)   \]
+
+\bigskip
+for $n = 0,1,2, \dots$, and the \textbf{conjugating function} is
+
+\[ w \EQ h(z) \EQ 2z \,-\, \frac1{2} \] 
+
+\bigskip
+The \textbf{conjugate iteration sequence} is defined as (TB Ref: Book~D, Unit~2 pg~98)(HB Ref: pg~88, Unit~D2, Section~1, point~8) \\
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{"M337-TMA04-Q2a2-3"}
+\end{figure}
+
+and the remarks give us the procedure on how to prove when $(z_n)$ and $(w_n)$ are \textbf{conjugate iteration sequences} -- procedure which we now apply. \\
+
+First we note that the function $h(z) = 2z - \frac1{2}$ is one-to-one and entire on $\C$. Putting 
+
+\[ w_n \EQ h(z_n) \EQ 2z_n \,-\, \frac1{2}, \]
+
+we have $z_n = h^{-1}(w_n) = (2w_n + 1)/4$, so
+
+\begin{IEEEeqnarray*}{rCl}
+z_{n+1} & \EQ &  2z_n^2 - z_n + 1 \qquad n = 0,1,2, \dots   \\
+\intertext{becomes}
+\frac{2w_{n+1} + 1}{4} & \EQ & 2\left(\, \frac{2w_n + 1}{4} \,\right)^2 - \frac{2w_n + 1}{4} + 1  \\
+\\
+2w_{n+1} + 1 & \EQ & \frac{\left(\, 2w_n + 1 \,\right)^2}{2} - ( 2w_n + 1) + 4  \\
+\\
+2w_{n+1} & \EQ & \frac{ 4w_n^2 + 4w_n + 1 }{2} -  2w_n  + 2  \\
+\\
+w_{n+1} & \EQ &  w_n^2 + w_n + \frac1{4} -  w_n  + 1  \\
+\intertext{that is}
+w_{n+1} & \EQ &  w_n^2  + \frac{5}{4} \qquad n = 0,1,2, \dots  \\
+\end{IEEEeqnarray*}
+This proves that \\
+
+\bigskip
+\begin{Answer}
+the sequences  $(z_n)$ and $(w_n)$ are \textbf{conjugate iteration sequences} with \textbf{conjugating function} $h(z) = 2z - \frac1{2}$.
+\end{Answer}
+
+
+
+\newpage  
+  \item [(iii)]  The conjugate value of the fixed point $\alpha = \displaystyle \frac{1+i}{2}$ \; is
+
+\begin{IEEEeqnarray*}{rCl}
+h(\alpha) & \EQ & 2\left(\, \alpha \,\right) - \frac1{2}   \\
+\\
+ & \EQ & 2\left(\, \frac{1+i}{2} \,\right) - \frac1{2}   \\
+\\
+ & \EQ & \frac{1}{2} \,+\, i   \\
+\\
+\intertext{and the conjugate value of the fixed point $\beta = \displaystyle \frac{1-i}{2}$ \; is}
+h(\beta) & \EQ & 2\left(\, \beta \,\right) - \frac1{2}   \\
+\\
+ & \EQ & 2\left(\, \frac{1-i}{2} \,\right) - \frac1{2}   \\
+\\
+ & \EQ & \frac{1}{2} \,-\, i  
+\end{IEEEeqnarray*}
+
+For the fixed points of $P_{5/4}$, it is sufficient to find the zeroes of $P_{5/4}(z) - z = 0$. In our case we have
+%
+\begin{IEEEeqnarray*}{rCl}
+P_{5/4}(z) - z & \EQ & 0  \EQ  \left(\, z^2 + \frac{5}{4} \,\right)  \,-\, z\ \\
+\\
+ & & 0 \EQ  z^2 - z + \frac{5}{4}    \\
+\\
+ & & 0 \EQ  4z^2 - 4z + 5    \\
+\intertext{hence using the quadratic equation, we obtain}
+z & \EQ & \frac{4 \pm \sqrt{16 - 4\cdot 4 \cdot 5}} {2\cdot 4} 
+ \EQ  \frac{1 \pm \sqrt{1 -  5}} {2} \EQ \frac{1}{2} \pm i
+\end{IEEEeqnarray*}
+
+Hence we have verified that  \\
+  
+\bigskip
+\begin{Answer}
+ \qquad  \,$h(\alpha)$\, and \,$h(\beta)$\, are the fixed points of $P_{5/4}$. \qquad~
+\end{Answer}
+  
+  
+  
+  
+\newpage
+  \item [(iv)]  Lemma 4.1 says (TB Ref: Book~D, Unit~2 pg~143)(HB Ref: pg~92, Unit~D2, Section~4, point~9)\\
+  
+  
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{"M337-TMA04-Q2a4-1"}
+\end{figure}
+
+Hence $P_{5/4}$ has a single 2-cycle \,$\alpha_1, \alpha_2$\, where
+
+\[ \alpha_1 \EQ - \frac1{2} \,+\, \sqrt{-\frac{3}{4} \,-\, \frac{5}{4}} \EQ - \frac1{2} \,+\, \sqrt{2} \; i\]
+
+and
+
+\[ \alpha_2 \EQ - \frac1{2} \,-\, \sqrt{-\frac{3}{4} \,-\, \frac{5}{4}} \EQ - \frac1{2} \,-\, \sqrt{2} \; i\]
+
+which is a repelling cycle since the multiplier is equal to 
+
+\[ 4(c+1) \EQ 4(5/4 + 1) \EQ 6 > 1.   \]
+
+\bigskip
+Recalling that $z_n = h^{-1}(w_n) = (2w_n + 1)/4$ is the inverse conjugating function between the iteration sequences $f(z)$ and $P_{5/4}(w)$, we can calculate the points \,$\beta_1, \beta_2$\, in $f$ corresponding to the points \,$\alpha_1, \alpha_2$\, in $P_{5/4}$.
+
+\begin{IEEEeqnarray*}{rCl}
+\beta_1  & \EQ & h^{-1}(\alpha_1) \EQ  \frac{2\alpha_1 + 1}{4} \\
+\\
+& \EQ & \frac{2\left(\, -\frac1{2}\,+\,\sqrt{2} \; i \,\right)+ 1}{4}
+ \EQ  \frac{ -1 \,+\,\sqrt{8} \; i \,+\, 1}{4} 
+ \EQ   \sqrt{\frac1{2}} \; i  \\
+\\
+\intertext{and}
+\beta_2  & \EQ & h^{-1}(\alpha_2) \EQ  \frac{2\alpha_2 + 1}{4} \\
+\\
+& \EQ & \frac{2\left(\, -\frac1{2}\,-\,\sqrt{2} \; i \,\right)+ 1}{4}
+ \EQ  \frac{ -1 \,-\,\sqrt{8} \; i \,+\, 1}{4} 
+ \EQ   - \sqrt{\frac1{2}} \; i  \\
+\end{IEEEeqnarray*}
+
+Which will verify by calculating
+
+\begin{IEEEeqnarray*}{rCl}
+f(\pm\sqrt{\frac1{2}} \; i) & \EQ & 2\left(\, \pm\sqrt{\frac1{2}} \; i \,\right)^2 \,-\, \left(\, \pm\sqrt{\frac1{2}} \; i \,\right) \,+\, 1  \\
+\\
+& \EQ & 2\left(\, -\frac1{2}  \,\right) \,-\, \left(\, \pm\sqrt{\frac1{2}} \; i \,\right) \,+\, 1 \EQ \mp\sqrt{\frac1{2}} \; i  \\
+\\
+\end{IEEEeqnarray*}
+
+To classify \,$\beta_1$, \, and \, $\beta_2$\, we calculate
+
+\[ \ABS{ f'(\pm\sqrt{\frac1{2}} \; i) } \EQ  \ABS{ 4\left(\, \pm\sqrt{\frac1{2}} \; i \,\right) \,-\, 1 } \EQ \abs{\sqrt{8}i+1} \EQ 3 > 1 \]
+
+\bigskip
+Hence, the points\\
+
+\begin{Answer}
+\[ \qquad \sqrt{\frac1{2}}\,i \qquad \text{and} \qquad  -\sqrt{\frac1{2}}\,i \qquad ~ \]
+
+\bigskip
+are a 2-cycle of $f$ and are repelling points. \qquad \qquad ~
+\end{Answer}
+
+
+
+\newpage  
+  \item [(v)] We already have four distinct points that lie in the keep set $K_{5/4}$. They are the two fixed points, \,$\phi_1$ \,and \,$\phi_2$ \, plus the two 2-cycle points, \,$\alpha_1$\, and \, $\alpha_2$. \\
+  
+  Referring to Theorem 2.3, point (e) (TB Ref: Book~D, Unit~2 pg~110)(HB Ref: pg~89, Unit~D2, Section~2, point~7) \\
+  
+  \begin{figure}[H]
+  	\centering
+  	\includegraphics[width=0.9\linewidth]{"M337-TMA04-Q2a5-1"}
+  \end{figure}
+
+we can add the symmetric points under rotation $\pi$ about 0, so in summary we will have the following points that lie in the keep set $K_{5/4}$:\\
+
+\bigskip
+\begin{Answer}
+\begin{IEEEeqnarray*}{rClCrCl}
+\intertext{The two fixed points:}
+\phi_1 & \EQ & \frac1{2} \,+\, i 
+       & \qquad \text{and} \qquad & \phi_2 & \EQ & \frac1{2} \,-\, i \\
+\intertext{The two 2-cycle points:}
+\alpha_1 & \EQ & \frac1{2} \,+\, \sqrt{2}\,i 
+       & \text{and} & \alpha_1 & \EQ & \frac1{2} \,-\, \sqrt{2}\,i \\
+\intertext{The four symmetric points under rotation $\pi$ about 0:}
+-\phi_1 & \EQ & -\frac1{2} \,-\, i 
+       &  \text{and}  & -\phi_2 & \EQ & -\frac1{2} \,+\, i \\
+\\
+-\alpha_1 & \EQ & -\frac1{2} \,-\, \sqrt{2}\,i 
+       & \text{and} & -\alpha_1 & \EQ & -\frac1{2} \,+\, \sqrt{2}\,i \\
+\end{IEEEeqnarray*}
+
+\end{Answer}
+
+
+\newpage  
+  \item [(vi)]  By Theorem 3.1 (TB Ref: Book~D, Unit~2 pg~127)(HB Ref: pg~91, Unit~D2, Section~3, point~3) \\
+  
+  \begin{figure}[H]
+  	\centering
+  	\includegraphics[width=0.9\linewidth]{"M337-TMA04-Q2a6-1"}
+  \end{figure}
+
+we know (because $c > 1/4$) that for $P_{5/4}$ all $x \in \R$ will be in $E_{5/4}$. Since \,$K_c \cap E_c = \emptyset$, \,we deduce that,  \\
+
+\bigskip
+\begin{Answer}
+\qquad the point $0 \in \R$ belongs to $E_{5/4}$ and not to $K_{5/4}$. \qquad ~
+\end{Answer}  
+  
+     
+\end{labeling}
+
+
+
+\comment{===========================================================}
+\noindent\rule[0.5ex]{\linewidth}{1pt} 
+\newpage
+\begin{Question}[2b - Mandelbrot Set ]{}
+
+ Determine which of the following points lie in the Mandelbrot set.\\
+
+\begin{labeling}{(iii) }
+\item [(i)]  \quad \( c \EQ i \, \sqrt{\frac{2}{5}}  \)
+
+\bigskip
+\item [(ii)] \quad \( c \EQ i \, \sqrt{\frac{5}{2}}  \)
+  
+\end{labeling}
+
+\bigskip
+\end{Question}
+
+\setcounter{equation}{0}
+
+\bigskip
+
+ Determine which of the following points lie in the Mandelbrot set.\\
+
+\begin{labeling}{(iii) }
+\item [(i)]  By Theorem 4.6 point (a) (TB Ref: Book~D, Unit~2 pg~140)(HB Ref: pg~92, Unit~D2, Section~4, point~11) \\
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{"M337-TMA04-Q2b1-1"}
+\end{figure}
+
+for
+
+\[ c \EQ i \, \sqrt{\frac{2}{5}}  \]
+
+we have
+
+\[ \left(\, 8 \cdot \abs{i \, \sqrt{\frac{2}{5}}}^2 \,-\, \frac{3}{2} \,\right)^2 \,+\, 8\, \Re\left(\, i \, \sqrt{\frac{2}{5}} \,\right) \EQ \left( \frac{16}{5} \,-\, \frac{3}{2}\right)^2 \EQ \left( \frac{17}{10} \right)^2 \EQ 2.89 \LSS 3 \] 
+
+\bigskip
+Hence, $P_c$ has an attracting fixed point. But according to Theorem 4.5 (TB Ref: Book~D, Unit~2 pg~140)(HB Ref: pg~92, Unit~D2, Section~4, point~10) \\
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{"M337-TMA04-Q2b1-2"}
+\end{figure}
+
+this means that since $P_c$ has an attracting cycle (the fixed point), \\
+
+\bigskip
+\begin{Answer}
+the point \quad \( c \EQ i \, \sqrt{\frac{2}{5}}  \) \quad lies in the Mandelbrot set.
+\end{Answer}
+
+
+\bigskip
+\item [(ii)] The Mandelbrot set is specified as follows: (TB Ref: Book~D, Unit~2 pg~135)(HB Ref: pg~92, Unit~D2, Section~4, point~6) \\
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{"M337-TMA04-Q2b2-1"}
+\end{figure}
+
+but if we calculate
+
+\[ P_c^2(0) \EQ  P_c(c) \EQ c^2 \,+\, c \EQ \left(\,  i \, \sqrt{\frac{5}{2}} \,\right)^2 \,+\,  i \, \sqrt{\frac{5}{2}} \EQ - \frac{5}{2} \,+\,  i \, \sqrt{\frac{5}{2}} \]
+
+we can see that
+
+\[ \ABS{P_c^2(0)} \EQ  \sqrt{ \frac{25}{4} \,+\, \frac{5}{2} } \EQ \sqrt{ \frac{35}{4}} \GRT 2 \]
+
+\bigskip
+Hence, we deduce that \\
+
+\bigskip
+\begin{Answer}
+the point \quad \( c \EQ i \, \sqrt{\frac{5}{2}}  \) \quad does not lie in the Mandelbrot set.
+\end{Answer}
+
+  
+\end{labeling}
+
+
+
+\comment{===========================================================}
+\noindent\rule[0.5ex]{\linewidth}{1pt} 
+\newpage
+\begin{Question}[2c - Mandelbrot Set ]{}
+
+ Prove that the closed disc with centre $-1$ and radius $\displaystyle \frac1{4}$ is contained within the Mandelbrot set.
+
+\bigskip
+\end{Question}
+
+\setcounter{equation}{0}
+
+\bigskip
+
+In the textbook, the inequalities in Theorem 4.6 identify some of the points that are within the Mandelbrot set. These are then shown in the figure 4.6 reproduced below (TB Ref: Book~D, Unit~2 pg~141) \\
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\linewidth]{"M337-TMA04-Q2c-1"}
+\end{figure}
+
+The area highlighted in pink corresponds to the points in the function $P_c$ having an attracting 2-cycle if and only if $c$ satisfies \,$\abs{c+1} < \displaystyle \frac1{4}$\, (Theorem 4.6 point (b)). This is the open disc with centre $-1$ and radius $\displaystyle \frac1{4}$ and all these points are contained within the Mandelbrot set.\\
+
+\bigskip
+Now all that remains is to prove that the boundary of this open disc are also within the Mandelbrot set. \\
+
+\bigskip
+First of all, we note that the above open disc is a periodic region, which we will call $\Reg{R}$, defined as follows (TB Ref: Book~D, Unit~2 pg~144)(HB Ref: pg~92, Unit~D2, Section~4, point~12) \\
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{"M337-TMA04-Q2c-2"}
+\end{figure}
+
+Then we will use the result of Exercise 4.12, page 154, where it is requested to "prove that if $\Reg{R}$ is a periodic region of $M$, then $\partial\Reg{R} \subseteq M$". \\
+
+\bigskip
+Let's assume that some point $\alpha \in \partial\Reg(R)$ lies outside $M$, then because $M$ is compact and therefore closed in $\C$, there is an open disc $D$ with centre $\alpha$ that lies entirely outside $M$. Since $\Reg{R} \subseteq M$, the open disc $D$ does not meet $\Reg{R}$, but this contradicts the fact that $\alpha$ is a boundary point of $\Reg{R}$. Hence, the assumption is false and therefore $\partial\Reg{R} \subseteq M$ must be true.\\
+
+\bigskip
+So we have proven the statement "if $\Reg{R}$ is a periodic region of $M$, then $\partial\Reg{R} \subseteq M$", which really deserves to be elevated to the status of a Theorem.\\
+
+\bigskip
+Our region, $\Reg{R}$, is the open disc with centre $-1$ and radius $\displaystyle \frac1{4}$, so its boundary $\partial\Reg{R}$ is also contained in $M$ and hence we have proven that,\\
+
+\bigskip
+\begin{Answer}
+\begin{center}
+\qquad the closed disc with centre $-1$ and radius $\displaystyle \frac1{4}$ \qquad ~ \\
+\bigskip
+is contained within the Mandelbrot set.
+\end{center}
+\end{Answer}
+
+
+\comment{===========================================================}
+\noindent\rule[0.5ex]{\linewidth}{1pt} 
+\newpage
+\begin{Question}[3 -  Practice Questions Covering Material from Book A ]{}
+
+Determine each of the following complex numbers in polar form, simplifying
+your answers as far as possible.\\
+
+
+\begin{labeling}{(a)xxx }
+\item [(a)]  \quad \( \displaystyle  \frac1{\sqrt{3}} \,-\, \displaystyle \frac{i}{3}   \)
+
+%\bigskip
+\item [(b)] \quad \( \displaystyle \Bigg(\, \frac1{\sqrt{3}} \,-\, \displaystyle \frac{i}{3} \,\Bigg)^4 \) 
+
+%\bigskip
+\item [(c)]  \quad \( \displaystyle \big(\, -i \,\big)^{-1-i}  \)
+
+%\bigskip
+\item [(d)]  \quad \( \displaystyle \big(\,1+i\,\big)\,\big(\, \sqrt{3}-i \,\big)  \)
+  
+\end{labeling}
+
+\bigskip
+\end{Question}
+
+\setcounter{equation}{0}
+
+\bigskip
+
+
+\begin{labeling}{(a)xxx }
+\item [(a)] For \quad \( z \EQ \displaystyle  \frac1{\sqrt{3}} \,-\, \displaystyle \frac{i}{3}   \)
+
+\begin{IEEEeqnarray*}{rCl}
+r & \EQ & \sqrt{\frac1{3} + \frac1{9}} \EQ \sqrt{\frac{4}{9}} \EQ \frac{2}{3}  \\
+\theta & \EQ & \tan^{-1}{\frac{1/3}{1/\sqrt{3}}} \EQ \tan^{-1}{\frac{\sqrt{3}}{3}} \EQ \frac1{6} \pi   
+\end{IEEEeqnarray*}
+%
+Hence, \\
+
+\bigskip
+\begin{Answer}
+\[ \qquad z  \EQ  \frac{2}{3} \; \left(\, \cos{\frac{\pi}{6}} \,+\,  \sin{\frac{\pi}{6}} \,\right) \qquad ~ \]
+\end{Answer}
+
+
+\newpage
+\item [(b)] For \quad \( z \EQ \displaystyle \Bigg(\, \frac1{\sqrt{3}} \,-\, \displaystyle \frac{i}{3} \,\Bigg)^4 \) 
+
+\bigskip
+Using our previous answer and De Moivre's Theorem, \\
+
+\bigskip
+\begin{Answer}
+\[ \qquad z  \EQ  \frac{16}{81} \; \left(\, \cos{\frac{2\pi}{3}} \,+\,  \sin{\frac{2\pi}{3}} \,\right) \qquad ~ \]
+\end{Answer}
+
+\bigskip
+\item [(c)] For \quad \( z \EQ\displaystyle \big(\, -i \,\big)^{-1-i}  \)
+
+\begin{IEEEeqnarray*}{rCl}
+\big(\, -i \,\big)^{-1-i} & \EQ & \big(\, e^{-i\pi/2} \,\big)^{-1-i} 
+\EQ  e^{i\pi/2} \cdot e^{-\pi/2} \EQ  i \cdot e^{-\pi/2}  
+\end{IEEEeqnarray*}
+
+Hence, \\
+
+\bigskip
+\begin{Answer}
+\[ \qquad z  \EQ  e^{-\pi/2} \; \left(\, \cos{\frac{\pi}{2}} \,+\,  \sin{\frac{\pi}{2}} \,\right) \qquad ~ \]
+\end{Answer}
+
+\bigskip
+\item [(d)]  For \quad \( z \EQ \displaystyle \big(\,1+i\,\big)\,\big(\, \sqrt{3}-i \,\big)  \EQ  \big(\,\sqrt{3}+1\,\big) \,+\,\big(\, \sqrt{3}-1 \,\big)i \)
+
+\begin{IEEEeqnarray*}{rCl}
+r & \EQ & \sqrt{\big(\,\sqrt{3}+1\,\big)^2 + \big(\,\sqrt{3}-1\,\big)^2} \EQ  2\sqrt{2} \\
+\\
+\theta & \EQ & \tan^{-1}{\frac{\sqrt{3}-1}{\sqrt{3}+1}} \EQ \tan^{-1}{\frac{(\sqrt{3}-1)^2}{2}} \EQ \tan^{-1}{\frac{4 - 2\sqrt{3}}{2}}\EQ \frac1{12} \pi   
+\end{IEEEeqnarray*}
+%
+Hence, \\
+
+\bigskip
+\begin{Answer}
+\[ \qquad z  \EQ   2\sqrt{2} \; \left(\, \cos{\frac{\pi}{12}} \,+\,  \sin{\frac{\pi}{12}} \,\right) \qquad ~ \]
+\end{Answer}
+  
+\end{labeling}
+
+
+\comment{===========================================================}
+\noindent\rule[0.5ex]{\linewidth}{1pt} 
+\newpage
+\begin{Question}[4 -  Practice Questions Covering Material from Book B ]{}
+
+\begin{labeling}{(b) }
+  \item [(a)] Evaluate the following integrals in which $\Gamma$ is the square contour with vertices $1, i, -1$ \,and\,  $-i$. Name any standard results that you use, and check that their hypotheses are satisfied. \\
+
+\begin{labeling}{(iii) }
+\item [(i)]  \quad \( \displaystyle \int_{\Gamma} \, \frac1{z+2} \, \dd{z}  \)
+
+\bigskip
+\item [(ii)] \quad \( \displaystyle \int_{\Gamma} \, \frac1{z(z+2)} \, \dd{z} \) 
+
+\bigskip
+\item [(iii)] \quad \( \displaystyle \int_{\Gamma} \, \frac1{z(2z+1)} \, \dd{z} \) 
+  
+\end{labeling}
+
+
+\bigskip  
+  \item [(b)]  Explain how the three answers that you obtained in part (a) would change if the direction in which $\Gamma$ is traversed was reversed.  \\
+  
+      
+\end{labeling}
+
+\bigskip
+\end{Question}
+
+\setcounter{equation}{0}
+
+\bigskip
+
+
+\begin{labeling}{(b) }
+  \item [(a)] In the following integrals, $\Gamma$ is the square contour with vertices $1, i, -1$ \,and\,  $-i$, shown in the following figure:  \\
+
+\bigskip
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\linewidth]{"M337-TMA04-Q4-1"}
+\end{figure}
+
+
+\newpage
+\begin{labeling}{(iii) }
+\item [(i)] For \quad \( \displaystyle \int_{\Gamma} \, \frac1{z+2} \, \dd{z}  \) \\
+
+\bigskip
+we choose a simply connected region $\Reg{R}$ containing the closed contour $\Gamma$ on which the function $f(z) = 1/(z+2)$ is analytic. An example is the one shown in the above figure
+
+\[ \Reg{R} \EQ \set{z}{\Re z > -1.5} \]
+
+Since the region does not contain the point -2, the conditions of Cauchy's Theorem are satisfied, hence  \\
+
+\bigskip
+\begin{Answer}
+\[ \int_{\Gamma} \, \frac1{z+2} \, \dd{z} \EQ 0 \]
+\end{Answer}
+
+\bigskip
+\item [(ii)] For \quad \( \displaystyle \int_{\Gamma} \, \frac1{z(z+2)} \, \dd{z} \) \\
+
+\bigskip
+we use Cauchy's Integral Formula with \,$f(z) = 1/(z+2)$, \,$\alpha = 0$ \,and the simply connected region \,$\Reg{R} = \set{z}{\Re z > -1.5}$. As $f$ is analytic on $\Reg{R}$ we have for any point $\alpha$ inside the simple closed contour $\Gamma$:\\
+
+\bigskip
+\begin{Answer}
+\[ \int_{\Gamma} \, \frac1{z(z+2)} \, \dd{z} \EQ 2\pi i \, f(0) \EQ  2\pi i \, \frac1{2} \EQ \pi i \]
+\end{Answer}
+
+
+\newpage
+\item [(iii)] For \quad \( \displaystyle \int_{\Gamma} \, \frac1{z(2z+1)} \, \dd{z} \)\\
+
+\bigskip
+We first apply the technique of partial fractions to obtain:
+
+\[  \frac1{z(2z+1)} \EQ \frac1{z} \,-\, \frac{2}{2z+1} \]
+
+\bigskip
+Then, we use Cauchy's Integral Formula with \,$f_1(z) = 1$, \,$\alpha_1 = 0$, \,$f_2(z) = 1$, \,$\alpha_2 = -1/2$  \,and \,$\Reg{R} = \set{z}{\Re z > -1.5}$. Both functions are analytic on the simply connected region $\Reg{R}$ and both points are inside the simple closed contour $\Gamma$. Hence \\
+
+\bigskip
+\begin{Answer}
+\begin{IEEEeqnarray*}{rCl}
+\int_{\Gamma} \, \frac1{z(2z+1)} \, \dd{z} & \EQ & \int_{\Gamma} \, \frac1{z} \, \dd{z} \,-\, 2\int_{\Gamma} \, \frac1{2z+1} \, \dd{z}  \\
+\\
+ & \EQ & 2\pi i \, f_1(1) \,-\, 2 \cdot 2\pi i \, f_2(1)  \\
+ \\
+ & \EQ & 2\pi i  \,-\, 4\pi i  \EQ - 2\pi i    
+\end{IEEEeqnarray*}
+\end{Answer}
+
+  
+\end{labeling}
+
+
+\bigskip  
+  \item [(b)]  The three answers obtained in part (a) would not change at all if the direction in which $\Gamma$ is traversed was reversed. The contour is a simple closed contour which implies that the initial and final point of integration are the same, and for both Cauchy's Theorem and Cauchy's Integral Theorem the direction of the contour does not matter.  \\
+  
+      
+\end{labeling}
+
+
+
+\comment{===========================================================}
+\noindent\rule[0.5ex]{\linewidth}{1pt} 
+\newpage
+\begin{Question}[5 - Analytic Continuations ]{}
+
+\begin{IEEEeqnarray*}{rCl"s}
+\intertext{Let}
+f(z) & \EQ & \sum_{n=0}^\infty \, \left( -1 \right)^{n-1} \, \left(z - 1 \right)^n & $(\abs{z-1} < 1)$ 
+\intertext{and}
+g(z) & \EQ & \sum_{n=0}^\infty \,  \left(z + 1 \right)^n  & $(\abs{z+1} < 1)$  \\
+\end{IEEEeqnarray*}
+
+
+\begin{labeling}{(b) }
+  \item [(a)] Explain why $f$ and $g$ are not direct analytic continuations of each other. \\
+  
+  \item [(b)]  Find an analytic function $h$ such that
+  
+\[ f(z) \EQ h(z), \qquad \text{for} \quad \abs{z - 1} < 1,  \]
+and
+\[ g(z) \EQ h(z), \qquad \text{for} \quad \abs{z + 1} < 1.  \]
+
+  
+  \item [(c)]  Deduce that $f$ and $g$ are indirect analytic continuations of each other. \\
+  
+      
+\end{labeling}
+
+\bigskip
+\end{Question}
+
+\setcounter{equation}{0}
+
+\bigskip
+
+Before proceeding to answer the required questions, we shall make some observations on and draw a picture of the given functions, $f$ and $g$.
+
+\begin{IEEEeqnarray*}{rCl"s}
+\intertext{For}
+f(z) & \EQ & \quad \sum_{n=0}^\infty \, \left( -1 \right)^{n-1} \, \left(z - 1 \right)^n & $(\abs{z-1} < 1)$ \\
+\\
+ & \EQ & - \, \sum_{n=0}^\infty \, \left[\, \left( -1 \right) \, \left(z - 1 \right) \,\right]^n  \\ 
+ &  \EQ &  -\sum_{n=0}^\infty \, \left(1 - z\right)^n  \\ 
+\intertext{this is a geometric series with the sum \qquad
+ $ \displaystyle \frac{-1}{1 - (1-z)} \EQ \displaystyle -\frac1{z} $ }
+\intertext{For}
+g(z) & \EQ & \sum_{n=0}^\infty \,  \left(z + 1 \right)^n  & $(\abs{z+1} < 1)$  \\
+\intertext{this is a geometric series with the sum \qquad
+ $ \displaystyle \frac{1}{1 - (z+1)} \EQ \displaystyle -\frac1{z} $ }
+\end{IEEEeqnarray*}
+
+The above is illustrated in the following figure: \\
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{"M337-TMA04-Q5-1"}
+\end{figure}
+
+\bigskip
+Now to answer the questions. The domains of the functions $f$, $g$ and $h$ will be called $D_f$, $D_g$ and $D_h$ respectively. \\
+
+\newpage
+\begin{labeling}{(b) }
+  \item [(a)] The functions $f$ and $g$ are cannot be direct analytic continuations of each other the because the intersection of their domains is null, $D_f \cap D_g = \emptyset$. The definition of direct analytic continuation requires that $f(z) = g(z)$ for $z \in \Reg{T} \subseteq D_f \cap D_g$, \, but being empty, it is not possible. \\
+
+\bigskip  
+  \item [(b)]  If we let \,$h(z) = - \displaystyle \frac1{z}$, \, then from the previous observations we have
+  
+\[ f(z) \EQ h(z) \EQ - \, \frac1{z} \qquad \text{for} \quad \abs{z-1} < 1 \]
+and
+\[ g(z) \EQ h(z) \EQ - \, \frac1{z} \qquad \text{for} \quad \abs{z+1} < 1 \]
+
+as required.
+
+\bigskip  
+  \item [(c)]  Given that $h(z)$ is analytic in $\C - \{0\}$ and taking into account the results of point (b), we deduce that $h(z)$ is an analytic extension of both $f$ and $g$ to $\C - \{0\}$. This is clearly visible in the illustration previously given.\\
+ 
+\bigskip
+So the functions $f$ and $h$ are analytic continuations of each other, as well as $g$ and $h$, however $f$ and $g$ are not as their domains are disjoint. Hence, by the definition of indirect analytic continuation, the functions $f$ and $g$ are indirect analytic continuations of each other and are joined by the following sequence of functions:
+
+\[ (f, D_f), \, (h, D_h), \, (g, D_g) \]
+  
+      
+\end{labeling}
+
+
+
+\comment{===========================================================}
+\noindent\rule[0.5ex]{\linewidth}{1pt} 
+\newpage
+\begin{Question}[6 - Extreme Values of Analytic Functions ]{}
+
+Prove that
+
+\[ \max \set{\ABS{2z^2 + iz + 2}} {\abs{z} \leq 1} \EQ \sqrt{17}, \]
+
+\bigskip
+and determine where this maximum value is attained. 
+
+\bigskip
+\end{Question}
+
+\setcounter{equation}{0}
+
+\bigskip
+
+Since $f(z) = 2z^2 + iz + 2$ is analytic and non-constant on the open disc
+\,$D = \set{z}{\abs{z} < 1}$\, and continuous on \,$D = \set{z}{\abs{z} \leq 1}$,\, it follows from the Maximum Principle (TB Ref: Book~C, Unit~2 pg~149)(HB Ref: pg~69, Unit~C2, Section~4, point~4)\\
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{"M337-TMA04-Q6-1"}
+\end{figure}
+
+that there exists a point \,$\alpha$\, in \,$\partial{D} = \set{z}{\abs{z} = 1}$\, such that
+
+\[  \max{ \set{\abs{f(z)}}{\abs{z} \leq 1} }  \EQ \ABS{f(\alpha)}. \]
+
+Now, each point of \,$\partial{D}$\, can be expressed as \,$e^{it}$,\, for some \,$t \in [0,2\pi)$,\, so we need to determine
+
+\[ \max { \set{\ABS{f(e^{it})}}{0 \leq t < 2\pi} }. \]
+
+Observe that
+\begin{IEEEeqnarray*}{rCl}
+f(e^{it}) & \EQ & 2\,e^{2it} \,+\, i\,e^{it} \,+\, 2  \\
+\\
+ & \EQ & 2\,e^{it} \; \left( e^{it} \,+\, \frac{i}{2} \,+\, e^{-it} \right)   \\
+\\
+ & \EQ & 2\,e^{it} \; \left( 2\cos{t} \,+\, \frac{i}{2} \right)   \\
+\intertext{having used the formula \,$\cos{t} = (e^{it} + e^{-it})/2$. \; Considering that \,$\abs{e^{it}} = 1$, we have}
+%
+\ABS{f(e^{it})}^2 & \EQ & \ABS{4\cos{t} \,+\, i} \EQ 1 + 16\cos^2{t} \\
+%
+\intertext{Since, \,$\cos^2{t} \leq 1$,\, we see that}
+%
+\ABS{f(e^{it})} & \LEQ & \sqrt{1\,+\,16} \EQ \sqrt{17} \\
+\intertext{with equality if and only if \,$\cos{t} = \pm 1$.\, That is, equality is attained if and only if \,$t = 0$\, or\, $t = \pi$. \,Therefore, }
+\end{IEEEeqnarray*}
+
+
+\begin{Answer}
+\begin{center}
+\qquad the maximum of \,$\set{\ABS{2z^2 + iz + 2}} {\abs{z} \leq 1}$ \\
+\qquad is attained at the points \,$\pm1$\, on \,$\partial{D}$,\, where it is equal to \,$\sqrt{17}$\, \qquad ~ \\ 
+ and at no other points on \,$\partial{D}$.
+\end{center}
+\end{Answer}
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+\newpage
+\begin{center}
+
+\begin{huge}
+
+{\LARGE $J^{-1}$}
+\[ \blue{z} \, \mapsto \, \red{z} \]
+
+\bigskip
+{\LARGE Thm 4.1}
+\[ \red{z} \, \mapsto \, \red{\Omega} \, \mapsto \, \red{q} \]
+
+
+\bigskip
+{\LARGE FMT}
+\[ \red{\Omega} \, \mapsto \, \blue{\Omega} \, \mapsto \, \blue{q} \]
+
+\end{huge}
+
+
+\end{center}
+\begin{LARGE}
+
+\[ \red{\Omega \quad \Omega, \, q \qquad} \qquad \blue{ \Omega \quad \Omega, \, q} \]
+
+\end{LARGE}
+
+
+\end{document}
+
